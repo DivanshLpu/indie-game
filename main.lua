@@ -3,7 +3,7 @@ function love.load()
     Buttons = require("buttons")
 
     Buttons.load({
-        opacity = 0.65,
+        opacity = 0.45,
         theme = "default",
         controls = {
             Up = {"w", "up"}, -- W or Arrow-Up
@@ -14,9 +14,15 @@ function love.load()
     })
 
     -- Create on-screen controls (touch + mouse work automatically!)
-    Buttons.createDPad()
-    Buttons.createABXY()
-    Buttons.createMenu()
+    Buttons.createDPad({
+        size = 0.60
+    })
+    Buttons.createABXY({
+        size = 0.12
+    })
+    Buttons.createMenu({
+        size = 0.08
+    })
 
     anim8 = require 'library/anim8'
     sti = require "library/sti"
