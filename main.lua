@@ -30,6 +30,13 @@ function love.load()
     zoom = 2.5
 
     cam:zoomTo(zoom)
+
+    local w, h = love.graphics.getDimensions()
+
+    function love.resize(w, h)
+        cam:zoomTo(zoom)
+    end
+
     spritesheet = love.graphics.newImage("sprites/player-sheet.png")
 
     player = {
@@ -200,12 +207,6 @@ function love.draw()
     Buttons.draw()
 
 end
-local w, h = love.graphics.getDimensions()
-
-function love.resize(w, h)
-    cam:zoomTo(zoom)
-end
-
 
 -- Forward input callbacks (REQUIRED)
 function love.keypressed(key)
