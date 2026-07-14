@@ -207,6 +207,9 @@ function love.draw()
     Buttons.draw()
 
 end
+function love.resize(w, h)
+    Buttons.resize(w, h)
+end
 
 -- Forward input callbacks (REQUIRED)
 function love.keypressed(key)
