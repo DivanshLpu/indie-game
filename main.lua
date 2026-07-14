@@ -207,23 +207,23 @@ function love.draw()
     Buttons.draw()
 
 end
-function love.resize(w, h)
-    Buttons.resize(w, h)
-end
-
--- Forward input callbacks (REQUIRED)
+-- Keyboard
 function love.keypressed(key)
     Buttons.keypressed(key)
 end
 function love.keyreleased(key)
     Buttons.keyreleased(key)
 end
+
+-- Mouse
 function love.mousepressed(x, y, b)
     Buttons.mousepressed(x, y, b)
 end
 function love.mousereleased(x, y, b)
     Buttons.mousereleased(x, y, b)
 end
+
+-- Touch
 function love.touchpressed(id, x, y)
     Buttons.touchpressed(id, x, y)
 end
@@ -234,3 +234,7 @@ function love.touchreleased(id)
     Buttons.touchreleased(id)
 end
 
+-- Resize (keeps layout correct on rotation)
+function love.resize(w, h)
+    Buttons.resize(w, h)
+end
