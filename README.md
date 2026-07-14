@@ -246,11 +246,7 @@ This project is built using amazing open-source software and aims to contribute 
 
 # 📜 License
 
-Choose any license you prefer:
-
-* MIT
-* Apache 2.0
-* GPL v3
+*No License*
 
 ---
 
