@@ -246,7 +246,7 @@ This project is built using amazing open-source software and aims to contribute 
 
 # 📜 License
 
-**No Licence**
+*No License*
 ---
 
 
