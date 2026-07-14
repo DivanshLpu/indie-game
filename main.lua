@@ -1,4 +1,4 @@
-local Buttons = require("buttons")
+local Buttons = require("library/buttons")
 
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
@@ -143,30 +143,6 @@ function love.update(dt)
         isMoving = true
 
     end
-
-    -- if love.keyboard.isDown("left") or pressed.left then
-    --     vx = speed * -1
-    --     player.anim = player.animations.left
-    --     isMoving = true
-    -- end
-
-    -- if love.keyboard.isDown("right") or pressed.right then
-    --     vx = speed
-    --     player.anim = player.animations.right
-    --     isMoving = true
-    -- end
-
-    -- if love.keyboard.isDown("up") or pressed.up then
-    --     vy = speed * -1
-    --     player.anim = player.animations.up
-    --     isMoving = true
-    -- end
-
-    -- if love.keyboard.isDown("down") or pressed.down then
-    --     vy = speed
-    --     player.anim = player.animations.down
-    --     isMoving = true
-    -- end
 
     if isMoving == false then
         player.anim:gotoFrame(2)
