@@ -120,6 +120,9 @@ end
 
 function love.update(dt)
     Buttons.update(dt)
+    function love.resize(w, h)
+        Buttons.resize(w, h)
+    end
 
     local isMoving = false
     local vx = 0
@@ -235,6 +238,4 @@ function love.touchreleased(id)
 end
 
 -- Resize (keeps layout correct on rotation)
-function love.resize(w, h)
-    Buttons.resize(w, h)
-end
+
