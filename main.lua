@@ -135,13 +135,13 @@ function love.update(dt)
 
     end
     if Buttons.down("Up") then
-        vx = speed * -1
+        vy = speed * -1
         player.anim = player.animations.up
         isMoving = true
 
     end
     if Buttons.down("Down") then
-        vx = speed
+        vy = speed
         player.anim = player.animations.down
         isMoving = true
 
