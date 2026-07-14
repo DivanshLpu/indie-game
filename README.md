@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://githubusercontent.com" style="display: inline-block; padding: 16px 40px; font-size: 20px; font-weight: 800; text-align: center; text-decoration: none; color: #ffffff; background-color: #238636; border-radius: 50px; box-shadow: 0px 4px 15px rgba(35, 134, 54, 0.4); transform: scale(1); transition: all 0.2s ease;">
+    🚀 DOWNLOAD GAME ZIP (DIRECT)
+  </a>
+</p>
+
+
 # 🎮 Indie Game Dev
 
 *A hobby project inspired by the classic Game Boy Advance RPG era.*
