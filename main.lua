@@ -2,8 +2,6 @@ function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
     Buttons = require("buttons")
 
-
-
     Buttons.load({
         opacity = 0.65,
         theme = "default",
@@ -74,8 +72,6 @@ function love.load()
         end
     end
 
-    -- local wall = world:newRectangleCollider(50,50,50,50)
-    -- wall:setType('static')
 
     walls = {}
 
@@ -160,9 +156,6 @@ function love.update(dt)
 
     player.collider:setLinearVelocity(vx, vy)
 
-    -- player.x = player.collider:getX()
-    -- player.y = player.collider:getY()
-
     player.anim:update(dt)
 
     world:update(dt)
@@ -185,31 +178,6 @@ function love.update(dt)
 
     cam.x = math.max(halfW, math.min(cam.x, mapW - halfW))
     cam.y = math.max(halfH, math.min(cam.y, mapH - halfH))
-
-    -- cam:lookAt(player.x, player.y)
-
-    -- local mapW = gameMap.width * gameMap.tilewidth
-    -- local mapH = gameMap.height * gameMap.tileheight
-
-    -- local wt = love.graphics.getWidth() / 2
-    -- local ht = love.graphics.getHeight() / 2
-
-    -- if cam.x < wt then
-    --     cam.x = wt
-    -- end
-
-    -- if cam.y < ht then
-    --     cam.y = ht
-    -- end
-
-    -- if cam.x > mapW - wt then
-    --     cam.x = mapW - wt
-    -- end
-
-    -- if cam.y > mapH - ht then
-    --     cam.y = mapH - ht
-    -- end
-
 end
 
 function love.draw()
