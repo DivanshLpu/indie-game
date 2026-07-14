@@ -181,6 +181,7 @@ function love.update(dt)
 end
 
 function love.draw()
+love.graphics.setColor(1, 1, 1, 1)
 
     cam:attach()
 
