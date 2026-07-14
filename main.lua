@@ -1,6 +1,6 @@
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
-    local Buttons = require("library.buttons")
+    local Buttons = require("buttons")
 
 
     Buttons.load({

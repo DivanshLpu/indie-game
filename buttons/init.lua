@@ -8,11 +8,11 @@
 --
 -- @module buttons
 
--- local Manager = require("buttons.manager")
-local base = ...
+local Manager = require("buttons.manager")
+-- local base = ...
 
-local Manager = require(base .. ".manager")
-local Button = require(base .. ".button")
+-- local Manager = require(base .. ".manager")
+
 
 
 ------------------------------------------------------------------------
