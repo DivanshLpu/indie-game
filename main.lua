@@ -1,7 +1,6 @@
-local Buttons = require("library/buttons")
-
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
+    Buttons = require "library/buttons"
 
     Buttons.load({
         opacity = 0.65,
@@ -128,7 +127,7 @@ function love.update(dt)
         isMoving = true
     end
     if Buttons.down("Right") then
-        vx = speed 
+        vx = speed
         player.anim = player.animations.right
         isMoving = true
 
@@ -140,7 +139,7 @@ function love.update(dt)
 
     end
     if Buttons.down("Down") then
-        vx = speed 
+        vx = speed
         player.anim = player.animations.down
         isMoving = true
 
@@ -212,7 +211,6 @@ function love.update(dt)
 end
 
 function love.draw()
-    Buttons.draw()
 
     cam:attach()
 
@@ -229,6 +227,7 @@ function love.draw()
     -- world:draw()
 
     cam:detach()
+Buttons.draw()
 
 end
 
