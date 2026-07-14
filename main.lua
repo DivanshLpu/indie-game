@@ -4,6 +4,8 @@ function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     Buttons.load({
+        opacity = 0.65,
+        theme = "default",
         controls = {
             Up = {"w", "up"}, -- W or Arrow-Up
             Down = {"s", "down"}, -- S or Arrow-Down
