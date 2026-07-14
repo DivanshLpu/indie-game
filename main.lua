@@ -15,10 +15,10 @@ function love.load()
 
     -- Create on-screen controls (touch + mouse work automatically!)
     Buttons.createDPad({
-        size = 0.60
+        size = 0.58
     })
     Buttons.createABXY({
-        size = 0.12
+        size = 0.11
     })
     Buttons.createMenu({
         size = 0.08
