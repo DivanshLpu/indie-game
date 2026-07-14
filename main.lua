@@ -1,6 +1,7 @@
 function love.load()
     love.graphics.setDefaultFilter("nearest", "nearest")
-    Buttons = require "library/buttons"
+    local Buttons = require("library.buttons")
+
 
     Buttons.load({
         opacity = 0.65,
@@ -227,7 +228,7 @@ function love.draw()
     -- world:draw()
 
     cam:detach()
-Buttons.draw()
+    Buttons.draw()
 
 end
 

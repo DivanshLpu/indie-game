@@ -8,7 +8,12 @@
 --
 -- @module buttons
 
-local Manager = require("buttons.manager")
+-- local Manager = require("buttons.manager")
+local base = ...
+
+local Manager = require(base .. ".manager")
+local Button = require(base .. ".button")
+
 
 ------------------------------------------------------------------------
 -- Singleton instance
