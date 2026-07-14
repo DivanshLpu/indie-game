@@ -72,7 +72,6 @@ function love.load()
         end
     end
 
-
     walls = {}
 
     if gameMap.layers["collision"] then
@@ -181,7 +180,7 @@ function love.update(dt)
 end
 
 function love.draw()
-love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, 1)
 
     cam:attach()
 
@@ -201,6 +200,12 @@ love.graphics.setColor(1, 1, 1, 1)
     Buttons.draw()
 
 end
+local w, h = love.graphics.getDimensions()
+
+function love.resize(w, h)
+    cam:zoomTo(zoom)
+end
+
 
 -- Forward input callbacks (REQUIRED)
 function love.keypressed(key)
