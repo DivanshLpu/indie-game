@@ -1,1 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="light">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Game Project | Divansh - RPG Adventure</title>
+    <meta name="description"
+        content="An indie RPG game project built with passion. Explore dungeons, battle enemies, and embark on an epic adventure.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* ===== THEME VARIABLES ===== */
+        :root,
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-elevated: #f5f5f5;
+            --bg-card: rgba(0, 0, 0, 0.02);
+            --bg-card-hover: rgba(0, 0, 0, 0.05);
+            --text-primary: #0a0a0a;
+            --text-secondary: #262626;
+            --text-muted: #737373;
+            --text-faint: #a3a3a3;
+            --border: rgba(0, 0, 0, 0.1);
+            --border-hover: rgba(0, 0, 0, 0.3);
+            --accent: #0a0a0a;
+            --accent-inverse: #ffffff;
+            --shadow-glow: rgba(0, 0, 0, 0.05);
+            --shadow-glow-hover: rgba(0, 0, 0, 0.1);
+            --grid-color: rgba(0, 0, 0, 0.04);
+            --noise-opacity: 0.015;
+            --marquee-faint: rgba(0, 0, 0, 0.05);
+            --marquee-medium: rgba(0, 0, 0, 0.1);
+            --watermark: rgba(0, 0, 0, 0.03);
+            --status-green: #16a34a;
+            --status-green-glow: rgba(22, 163, 74, 0.4);
+            --gradient-text: linear-gradient(135deg, #0a0a0a 0%, #525252 50%, #0a0a0a 100%);
+            --scrollbar-thumb: #d4d4d4;
+            --scrollbar-thumb-hover: #a3a3a3;
+            --scrollbar-track: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #050505;
+            --bg-elevated: #171717;
+            --bg-card: rgba(255, 255, 255, 0.02);
+            --bg-card-hover: rgba(255, 255, 255, 0.05);
+            --text-primary: #fafafa;
+            --text-secondary: #d4d4d4;
+            --text-muted: #737373;
+            --text-faint: #525252;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.3);
+            --accent: #ffffff;
+            --accent-inverse: #0a0a0a;
+            --shadow-glow: rgba(255, 255, 255, 0.05);
+            --shadow-glow-hover: rgba(255, 255, 255, 0.1);
+            --grid-color: rgba(255, 255, 255, 0.03);
+            --noise-opacity: 0.02;
+            --marquee-faint: rgba(255, 255, 255, 0.05);
+            --marquee-medium: rgba(255, 255, 255, 0.1);
+            --watermark: rgba(255, 255, 255, 0.03);
+            --status-green: #22c55e;
+            --status-green-glow: rgba(34, 197, 94, 0.4);
+            --gradient-text: linear-gradient(135deg, #ffffff 0%, #a3a3a3 50%, #ffffff 100%);
+            --scrollbar-thumb: #404040;
+            --scrollbar-thumb-hover: #525252;
+            --scrollbar-track: #0a0a0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow {
+            box-shadow: 0 0 40px var(--shadow-glow);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 60px var(--shadow-glow-hover);
+        }
+
+        .noise {
+            position: relative;
+        }
+
+        .noise::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: var(--noise-opacity);
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .card-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-shine::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, var(--shadow-glow) 50%, transparent 60%);
+            transform: rotate(0deg);
+            transition: transform 0.6s;
+        }
+
+        .card-shine:hover::before {
+            transform: rotate(180deg);
+        }
+
+        .section-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: relative;
+        }
+
+        .theme-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .theme-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: scale(1.05);
+        }
+
+        .theme-btn i {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-btn:hover i {
+            transform: rotate(180deg);
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 8px;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+
+        .theme-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .theme-option:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
+        .theme-option.active {
+            background: var(--accent);
+            color: var(--accent-inverse);
+        }
+
+        .theme-option i {
+            width: 18px;
+            text-align: center;
+        }
+
+        .theme-preview {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid currentColor;
+            flex-shrink: 0;
+        }
+
+        .theme-preview.light-preview {
+            background: #ffffff;
+            border-color: #0a0a0a;
+        }
+
+        .theme-preview.dark-preview {
+            background: #0a0a0a;
+            border-color: #fafafa;
+        }
+
+        *,
+        *::before,
+        *::after {
+            transition: background-color 0.5s ease, border-color 0.5s ease, color 0.3s ease;
+        }
+
+        .theme-btn,
+        .theme-dropdown,
+        .mobile-menu {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-elevated);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Feature Icon Boxes */
+        .feature-box {
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-muted));
+            z-index: 9999;
+            transition: width 0.1s;
+        }
+
+        @media (max-width: 768px) {
+            .theme-dropdown {
+                right: 0;
+                min-width: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body class="noise">
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="/" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                        style="background: var(--accent);">
+                        <span class="font-bold text-lg font-mono" style="color: var(--accent-inverse);">D</span>
+                    </div>
+                    <span class="font-semibold text-lg hidden sm:block" style="color: var(--text-primary);">Divansh<span
+                            style="color: var(--text-muted);">.</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="/" class="px-4 py-2 text-sm rounded-lg hover:bg-[var(--bg-card-hover)]"
+                        style="color: var(--text-muted);">Back to Portfolio</a>
+                    <a href="#about" class="px-4 py-2 text-sm rounded-lg hover:bg-[var(--bg-card-hover)]"
+                        style="color: var(--text-muted);">About</a>
+                    <a href="#features" class="px-4 py-2 text-sm rounded-lg hover:bg-[var(--bg-card-hover)]"
+                        style="color: var(--text-muted);">Features</a>
+                    <a href="#download" class="px-4 py-2 text-sm rounded-lg hover:bg-[var(--bg-card-hover)]"
+                        style="color: var(--text-muted);">Download</a>
+
+                    <div class="theme-toggle ml-2">
+                        <button id="themeToggleBtn" class="theme-btn" aria-label="Toggle theme">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                        <div id="themeDropdown" class="theme-dropdown">
+                            <div class="theme-option active" data-theme="light">
+                                <span class="theme-preview light-preview"></span>
+                                <i class="fas fa-sun"></i>
+                                <span>Light</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <span class="theme-preview dark-preview"></span>
+                                <i class="fas fa-moon"></i>
+                                <span>Dark</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-2">
+                    <div class="theme-toggle">
+                        <button id="themeToggleBtnMobile" class="theme-btn" aria-label="Toggle theme">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                        <div id="themeDropdownMobile" class="theme-dropdown">
+                            <div class="theme-option active" data-theme="light">
+                                <span class="theme-preview light-preview"></span>
+                                <i class="fas fa-sun"></i>
+                                <span>Light</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <span class="theme-preview dark-preview"></span>
+                                <i class="fas fa-moon"></i>
+                                <span>Dark</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="menuBtn" class="w-10 h-10 flex items-center justify-center rounded-lg"
+                        style="background: var(--bg-card); border: 1px solid var(--border);">
+                        <i class="fas fa-bars" style="color: var(--text-primary);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 flex flex-col" style="background: var(--bg-primary);">
+        <div class="flex items-center justify-between p-4 sm:p-6">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: var(--accent);">
+                    <span class="font-bold text-lg font-mono" style="color: var(--accent-inverse);">D</span>
+                </div>
+                <span class="font-semibold text-lg" style="color: var(--text-primary);">Divansh</span>
+            </a>
+            <button id="closeMenu" class="w-10 h-10 flex items-center justify-center rounded-lg"
+                style="background: var(--bg-card); border: 1px solid var(--border);">
+                <i class="fas fa-times text-lg" style="color: var(--text-primary);"></i>
+            </button>
+        </div>
+        <div class="flex-1 flex flex-col items-center justify-center gap-6">
+            <a href="/" class="mobile-link text-2xl font-semibold" style="color: var(--text-primary);">Back to
+                Portfolio</a>
+            <a href="#about" class="mobile-link text-2xl font-semibold" style="color: var(--text-primary);">About</a>
+            <a href="#video" class="mobile-link text-2xl font-semibold" style="color: var(--text-primary);">Trailer</a>
+            <a href="#features" class="mobile-link text-2xl font-semibold"
+                style="color: var(--text-primary);">Features</a>
+            <a href="#download" class="mobile-link text-2xl font-semibold"
+                style="color: var(--text-primary);">Download</a>
+        </div>
+        <div class="p-6 flex justify-center gap-6">
+            <a href="https://github.com/DivanshLpu/indie-game" target="_blank" style="color: var(--text-muted);"
+                class="text-xl"><i class="fab fa-github"></i></a>
+            <a href="/" style="color: var(--text-muted);" class="text-xl"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden grid-pattern pt-20">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-10 w-32 h-32 rounded-full bg-current float"
+                style="color: var(--text-primary);"></div>
+            <div class="absolute bottom-32 right-16 w-24 h-24 rounded-full bg-current float"
+                style="color: var(--text-primary); animation-delay: -3s;"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
+            <div data-aos="fade-down" class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+                style="border: 1px solid var(--border); background: var(--bg-card);">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-sm font-mono" style="color: var(--text-muted);">v0.0.4 Latest</span>
+            </div>
+
+            <h1 data-aos="fade-up" class="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight mb-6">
+                <span class="gradient-text">Indie RPG</span><br>
+                <span style="color: var(--text-muted); font-size: 0.5em;">Adventure Game</span>
+            </h1>
+
+            <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl mx-auto text-lg sm:text-xl mb-10"
+                style="color: var(--text-muted);">
+                A passion project combining classic RPG mechanics with modern gameplay. Explore dungeons, battle fierce
+                enemies, and uncover the mysteries of a forgotten world.
+            </p>
+
+            <div data-aos="fade-up" data-aos-delay="300"
+                class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#video"
+                    class="group w-full sm:w-auto px-8 py-4 font-semibold rounded-xl hover:scale-105 transition-all flex items-center justify-center gap-3"
+                    style="background: var(--accent); color: var(--accent-inverse);">
+                    <i class="fas fa-play"></i>
+                    <span>Watch Trailer</span>
+                </a>
+                <a href="#download"
+                    class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl transition-all flex items-center justify-center gap-3"
+                    style="border: 1px solid var(--border); color: var(--text-primary);"
+                    onmouseover="this.style.background='var(--bg-card-hover)'; this.style.borderColor='var(--border-hover)'"
+                    onmouseout="this.style.background='transparent'; this.style.borderColor='var(--border)'">
+                    <i class="fas fa-download"></i>
+                    <span>Download Now</span>
+                </a>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="400" class="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold" style="color: var(--text-primary);">RPG</div>
+                    <div class="text-sm mt-1" style="color: var(--text-muted);">Genre</div>
+                </div>
+                <div class="text-center"
+                    style="border-left: 1px solid var(--border); border-right: 1px solid var(--border);">
+                    <div class="text-3xl font-bold" style="color: var(--text-primary);">Solo</div>
+                    <div class="text-sm mt-1" style="color: var(--text-muted);">Developer</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold" style="color: var(--text-primary);">v0.0.4</div>
+                    <div class="text-sm mt-1" style="color: var(--text-muted);">Version</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 sm:py-32 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div data-aos="fade-up" class="text-center mb-12">
+                <span class="text-sm font-mono tracking-wider uppercase" style="color: var(--text-muted);">Game
+                    Introduction</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2">
+                    Watch The <span style="color: var(--text-muted);">Trailer</span>
+                </h2>
+            </div>
+
+            <div data-aos="fade-up" class="video-container glow">
+                <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Indie Game Trailer"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div data-aos="fade-up" class="mt-8 text-center">
+                <p style="color: var(--text-muted);">Experience the adventure through this gameplay introduction</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-line max-w-7xl mx-auto"></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 sm:py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div data-aos="fade-right">
+                    <span class="text-sm font-mono tracking-wider uppercase" style="color: var(--text-muted);">About The
+                        Game</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-6">
+                        A Side Project Born From <span style="color: var(--text-muted);">Passion</span>
+                    </h2>
+                    <div class="space-y-4 text-base sm:text-lg" style="color: var(--text-secondary);">
+                        <p>
+                            This indie RPG game is a personal hobby project that I've been developing in my free time.
+                            As someone who has always been fascinated by classic role-playing games, I wanted to create
+                            something that captures the essence of old-school RPGs while adding modern touches.
+                        </p>
+                        <p>
+                            Built with <strong style="color: var(--text-primary);">LÖVE2D</strong> and <strong
+                                style="color: var(--text-primary);">Lua</strong>, this game features turn-based combat,
+                            exploration, character progression, and a story-driven experience. Every aspect of the
+                            game—from the pixel art to the game mechanics—has been crafted with care and attention to
+                            detail.
+                        </p>
+                        <p>
+                            This is an ongoing project that I continue to develop and improve. Your feedback is
+                            incredibly valuable in helping shape the future of this game!
+                        </p>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full text-sm font-medium"
+                            style="background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);">
+                            <i class="fas fa-gamepad mr-2"></i>LÖVE2D
+                        </span>
+                        <span class="px-4 py-2 rounded-full text-sm font-medium"
+                            style="background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);">
+                            <i class="fas fa-code mr-2"></i>Lua
+                        </span>
+                        <span class="px-4 py-2 rounded-full text-sm font-medium"
+                            style="background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);">
+                            <i class="fas fa-palette mr-2"></i>Pixel Art
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" class="relative">
+                    <div class="aspect-square rounded-3xl overflow-hidden glow"
+                        style="border: 1px solid var(--border); background: var(--bg-elevated);">
+                        <div class="w-full h-full flex items-center justify-center" style="color: var(--text-faint);">
+                            <i class="fas fa-dragon text-9xl"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 px-6 py-4 rounded-2xl"
+                        style="background: var(--bg-primary); border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center"
+                                style="background: var(--accent);">
+                                <i class="fas fa-heart text-xl" style="color: var(--accent-inverse);"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-semibold" style="color: var(--text-primary);">Made with Love
+                                </div>
+                                <div class="text-xs" style="color: var(--text-muted);">Hobby Project</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-line max-w-7xl mx-auto"></div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 sm:py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div data-aos="fade-up" class="text-center mb-16">
+                <span class="text-sm font-mono tracking-wider uppercase" style="color: var(--text-muted);">Game
+                    Features</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2">
+                    What's <span style="color: var(--text-muted);">Inside</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div data-aos="fade-up" data-aos-delay="100" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-sword-alt text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Turn-Based Combat</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Strategic battles with unique enemy types and
+                        abilities</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="200" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-map text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Explore Dungeons</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Discover hidden treasures and secrets in
+                        procedurally generated areas</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-user-shield text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Character Progression</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Level up, gain new skills, and customize your
+                        playstyle</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="400" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-scroll text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Story-Driven</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Uncover the mysteries of a forgotten world
+                        through quests</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="500" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-gem text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Loot & Equipment</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Collect weapons, armor, and magical items</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="600" class="feature-box p-6 rounded-2xl card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                        style="background: var(--accent);">
+                        <i class="fas fa-music text-xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Original Soundtrack</h3>
+                    <p class="text-sm" style="color: var(--text-muted);">Immersive music and sound effects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-line max-w-7xl mx-auto"></div>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 sm:py-32 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div data-aos="fade-up">
+                <span class="text-sm font-mono tracking-wider uppercase" style="color: var(--text-muted);">Get The
+                    Game</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-6">
+                    Download <span style="color: var(--text-muted);">Now</span>
+                </h2>
+                <p class="text-lg mb-12" style="color: var(--text-muted);">
+                    Version 0.0.1 is available for download. Try it out and share your feedback to help improve the
+                    game!
+                </p>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="100" class="grid sm:grid-cols-2 gap-6 mb-12">
+                <a href="https://github.com/DivanshLpu/indie-game/releases" target="_blank"
+                    class="group p-8 rounded-2xl transition-all card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);"
+                    onmouseover="this.style.borderColor='var(--border-hover)'; this.style.background='var(--bg-card-hover)'"
+                    onmouseout="this.style.borderColor='var(--border)'; this.style.background='var(--bg-card)'">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform"
+                        style="background: var(--accent);">
+                        <i class="fab fa-github text-3xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">GitHub Releases</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-muted);">Download the latest version from GitHub
+                    </p>
+                    <span class="inline-flex items-center gap-2 text-sm font-medium"
+                        style="color: var(--text-primary);">
+                        <span>Download</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+
+                <a href="https://github.com/DivanshLpu/indie-game" target="_blank"
+                    class="group p-8 rounded-2xl transition-all card-shine"
+                    style="border: 1px solid var(--border); background: var(--bg-card);"
+                    onmouseover="this.style.borderColor='var(--border-hover)'; this.style.background='var(--bg-card-hover)'"
+                    onmouseout="this.style.borderColor='var(--border)'; this.style.background='var(--bg-card)'">
+                    <div class="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform"
+                        style="background: var(--accent);">
+                        <i class="fas fa-code text-3xl" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">View Source Code</h3>
+                    <p class="text-sm mb-4" style="color: var(--text-muted);">Check out the code on GitHub</p>
+                    <span class="inline-flex items-center gap-2 text-sm font-medium"
+                        style="color: var(--text-primary);">
+                        <span>View Repo</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="200" class="p-6 rounded-2xl"
+                style="border: 1px solid var(--border); background: var(--bg-card);">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                        style="background: var(--accent);">
+                        <i class="fas fa-info" style="color: var(--accent-inverse);"></i>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="font-semibold mb-1" style="color: var(--text-primary);">System Requirements</h4>
+                        <p class="text-sm" style="color: var(--text-muted);">
+                            Windows 10/11, macOS 10.15+, or Linux. Requires LÖVE2D runtime (included in download).
+                            Minimum 2GB RAM, 500MB storage space.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-line max-w-7xl mx-auto"></div>
+
+    <!-- Feedback Section -->
+    <section class="py-20 sm:py-32 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+                    Your <span style="color: var(--text-muted);">Feedback</span> Matters
+                </h2>
+                <p class="text-lg mb-12" style="color: var(--text-muted);">
+                    Help me improve this game by sharing your thoughts, bug reports, and suggestions. Every piece of
+                    feedback helps make the game better!
+                </p>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="100"
+                class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://github.com/DivanshLpu/indie-game/issues" target="_blank"
+                    class="group w-full sm:w-auto px-8 py-4 font-semibold rounded-xl hover:scale-105 transition-all flex items-center justify-center gap-3"
+                    style="background: var(--accent); color: var(--accent-inverse);">
+                    <i class="fas fa-bug"></i>
+                    <span>Report a Bug</span>
+                    <i
+                        class="fas fa-arrow-up-right-from-square text-sm group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                </a>
+                <a href="https://github.com/DivanshLpu/indie-game/discussions" target="_blank"
+                    class="w-full sm:w-auto px-8 py-4 font-semibold rounded-xl transition-all flex items-center justify-center gap-3"
+                    style="border: 1px solid var(--border); color: var(--text-primary);"
+                    onmouseover="this.style.background='var(--bg-card-hover)'; this.style.borderColor='var(--border-hover)'"
+                    onmouseout="this.style.background='transparent'; this.style.borderColor='var(--border)'">
+                    <i class="fas fa-comments"></i>
+                    <span>Join Discussion</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative" style="border-top: 1px solid var(--border); background: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: var(--accent);">
+                        <span class="font-bold font-mono" style="color: var(--accent-inverse);">D</span>
+                    </div>
+                    <span class="font-semibold" style="color: var(--text-primary);">Divansh</span>
+                </div>
+
+                <p class="text-sm" style="color: var(--text-muted);">
+                    Indie Game Project © 2026 · A hobby project by Divansh
+                </p>
+
+                <div class="flex gap-4">
+                    <a href="https://github.com/DivanshLpu/indie-game" target="_blank"
+                        class="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                        style="border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted);"
+                        onmouseover="this.style.color='var(--text-primary)'; this.style.borderColor='var(--border-hover)'"
+                        onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='var(--border)'">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="/" class="w-10 h-10 rounded-lg flex items-center justify-center transition-all"
+                        style="border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted);"
+                        onmouseover="this.style.color='var(--text-primary)'; this.style.borderColor='var(--border-hover)'"
+                        onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='var(--border)'">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ===== THEME MANAGEMENT =====
+        const themeIcons = { light: 'fa-sun', dark: 'fa-moon' };
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('portfolio-theme', theme);
+            document.querySelectorAll('.theme-btn i').forEach(icon => {
+                icon.className = `fas ${themeIcons[theme]}`;
+            });
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.toggle('active', option.dataset.theme === theme);
+            });
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+            setTheme(savedTheme);
+        }
+        initTheme();
+
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeToggleBtnMobile = document.getElementById('themeToggleBtnMobile');
+        const themeDropdown = document.getElementById('themeDropdown');
+        const themeDropdownMobile = document.getElementById('themeDropdownMobile');
+
+        function toggleDropdown(dropdown, otherDropdown) {
+            otherDropdown.classList.remove('active');
+            dropdown.classList.toggle('active');
+        }
+
+        themeToggleBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleDropdown(themeDropdown, themeDropdownMobile); });
+        themeToggleBtnMobile.addEventListener('click', (e) => { e.stopPropagation(); toggleDropdown(themeDropdownMobile, themeDropdown); });
+
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setTheme(option.dataset.theme);
+                themeDropdown.classList.remove('active');
+                themeDropdownMobile.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', () => {
+            themeDropdown.classList.remove('active');
+            themeDropdownMobile.classList.remove('active');
+        });
+        themeDropdown.addEventListener('click', (e) => e.stopPropagation());
+        themeDropdownMobile.addEventListener('click', (e) => e.stopPropagation());
+
+        // ===== MOBILE MENU =====
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ===== AOS INIT =====
+        AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 50 });
+
+        // ===== SCROLL PROGRESS =====
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            scrollProgress.style.width = (scrollTop / scrollHeight) * 100 + '%';
+        });
+
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'var(--bg-primary)';
+                navbar.style.backdropFilter = 'blur(20px)';
+                navbar.style.borderBottom = '1px solid var(--border)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'transparent';
+                navbar.style.backdropFilter = 'none';
+                navbar.style.borderBottom = 'none';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
